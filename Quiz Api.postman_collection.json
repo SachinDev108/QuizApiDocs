@@ -1,0 +1,258 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Quiz Api",
+		"_postman_id": "e3f78f46-d494-a1b1-1b64-4e5d76e4a837",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Quiz",
+			"description": "",
+			"item": [
+				{
+					"name": "Quiz Create",
+					"request": {
+						"url": "{{protocol}}://{{server}}/api/v1/quizzes",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"quizzes\",\n\t\t\"attributes\": {\n\t\t\t\"title\": \"First Quiz\",\n\t\t\t\"description\": \"Its a first test to be performed\"\n\t\t}\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Quiz Update",
+					"request": {
+						"url": "{{protocol}}://{{server}}/api/v1/quizzes/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"quizzes\",\n\t\t\"id\": \"2\",\n\t\t\"attributes\": {\n\t\t\t\"title\": \"First Quiz for test\",\n\t\t\t\"description\": \"Its a first test to be performed\"\n\t\t}\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Quiz Show",
+					"request": {
+						"url": "{{protocol}}://{{server}}/api/v1/quizzes/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"quizzes\",\n\t\t\"id\": \"2\",\n\t\t\"attributes\": {\n\t\t\t\"title\": \"First Quiz for test\",\n\t\t\t\"description\": \"Its a first test to be performed\"\n\t\t}\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"description": "",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"url": "{{protocol}}://{{server}}/api/v1/questions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"questions\",\n\t\t\"attributes\": {\n\t\t\t\"description\": \"Its question for first quiz\",\n\t\t\t\"marks\": \"10\",\n\t\t\t\"time-of-question\": \"10\",\n\t\t\t\"options\": {\"a\": \"true\", \"b\": \"false\"},\n\t\t\t\"correct-answer\": [\"a\"]\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"quiz\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"quizzes\",\n\t\t\t\t\t\"id\": 2\n\t\t\t\t}\n\t\t\t}\t\n\t\t}\n\t}\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Answer Set",
+			"description": "",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"url": "{{protocol}}://{{server}}/api/v1/answers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"answers\",\n\t\t\"attributes\": {\n\t\t\t\"given-answer:\": [\"a\"]\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"quiz\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"quizzes\",\n\t\t\t\t\t\"id\": 2\n\t\t\t\t}\n\t\t\t}\t\n\t\t}\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Grade",
+					"request": {
+						"url": "{{protocol}}://{{server}}/api/v1/answers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"answers\",\n\t\t\"attributes\": {\n\t\t\t\"given-answer:\": [\"a\"]\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"quiz\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"quizzes\",\n\t\t\t\t\t\"id\": 2\n\t\t\t\t}\n\t\t\t}\t\n\t\t}\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "f363a392-fdb1-47cf-bc2b-cddca051cdf8",
+							"name": "assigb Grade",
+							"originalRequest": {
+								"url": "http://localhost:3000/api/v1/assign_grade/1",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/vnd.api+json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"name": "cache-control",
+									"key": "cache-control",
+									"value": "max-age=0, private, must-revalidate",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"name": "content-type",
+									"key": "content-type",
+									"value": "application/json; charset=utf-8",
+									"description": "The mime type of this content"
+								},
+								{
+									"name": "etag",
+									"key": "etag",
+									"value": "W/\"544d9c42d44bec0338f67c3bd70825d8\"",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"name": "transfer-encoding",
+									"key": "transfer-encoding",
+									"value": "chunked",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"name": "x-content-type-options",
+									"key": "x-content-type-options",
+									"value": "nosniff",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"name": "x-frame-options",
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"name": "x-request-id",
+									"key": "x-request-id",
+									"value": "dc9c9008-d036-4c28-957f-cd0cfd3ee231",
+									"description": "Custom header"
+								},
+								{
+									"name": "x-runtime",
+									"key": "x-runtime",
+									"value": "0.163552",
+									"description": "Custom header"
+								},
+								{
+									"name": "x-xss-protection",
+									"key": "x-xss-protection",
+									"value": "1; mode=block",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [],
+							"responseTime": 186,
+							"body": "{\"data\":{\"id\":\"1\",\"type\":\"answer-sets\",\"links\":{\"self\":\"/api/v1/answer-sets/1\"},\"attributes\":{\"candidate-name\":\"Demo User\",\"grade\":\"A+\",\"total-gained-marks\":\"10.0\"},\"relationships\":{\"quiz\":{\"links\":{\"self\":\"/api/v1/answer-sets/1/relationships/quiz\",\"related\":\"/api/v1/answer-sets/1/quiz\"}},\"answers\":{\"links\":{\"self\":\"/api/v1/answer-sets/1/relationships/answers\",\"related\":\"/api/v1/answer-sets/1/answers\"}}}},\"summary\":[{\"user\":\"Demo User\",\"result\":\"correct\",\"question_id\":2}]}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Answer",
+			"description": "",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"url": "{{protocol}}://{{server}}/api/v1/answers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.api+json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"answers\",\n\t\t\"attributes\": {\n\t\t\t\"given-answer\": [\"a\"]\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"answer-set\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"answer-sets\",\n\t\t\t\t\t\"id\": 1\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"question\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"questions\",\n\t\t\t\t\t\"id\": 2\n\t\t\t\t}\n\t\t\t}\t\n\t\t}\n\t}\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
