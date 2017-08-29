@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Quiz Api",
-		"_postman_id": "e3f78f46-d494-a1b1-1b64-4e5d76e4a837",
+		"_postman_id": "f0f3a932-8a6a-4218-aad9-78b81a72bb39",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -25,7 +25,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"quizzes\",\n\t\t\"attributes\": {\n\t\t\t\"title\": \"First Quiz\",\n\t\t\t\"description\": \"Its a first test to be performed\"\n\t\t}\n\t}\n}"
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"quizzes\",\n\t\t\"attributes\": {\n\t\t\t\"title\": \"First Quiz\",\n\t\t\t\"description\": \"Its a first test to be performed\",\n\t\t\t\"maximum-time\": 1\n\t\t}\n\t}\n}"
 						},
 						"description": ""
 					},
@@ -34,7 +34,7 @@
 				{
 					"name": "Quiz Update",
 					"request": {
-						"url": "{{protocol}}://{{server}}/api/v1/quizzes/2",
+						"url": "{{protocol}}://{{server}}/api/v1/quizzes/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -45,7 +45,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"quizzes\",\n\t\t\"id\": \"2\",\n\t\t\"attributes\": {\n\t\t\t\"title\": \"First Quiz for test\",\n\t\t\t\"description\": \"Its a first test to be performed\"\n\t\t}\n\t}\n}"
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"quizzes\",\n\t\t\"id\": \"1\",\n\t\t\"attributes\": {\n\t\t\t\"title\": \"First Quiz for test\",\n\t\t\t\"description\": \"Its a first test to be performed\"\n\t\t}\n\t}\n}"
 						},
 						"description": ""
 					},
@@ -91,7 +91,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"questions\",\n\t\t\"attributes\": {\n\t\t\t\"description\": \"Its question for first quiz\",\n\t\t\t\"marks\": \"10\",\n\t\t\t\"time-of-question\": \"10\",\n\t\t\t\"options\": {\"a\": \"true\", \"b\": \"false\"},\n\t\t\t\"correct-answer\": [\"a\"]\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"quiz\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"quizzes\",\n\t\t\t\t\t\"id\": 2\n\t\t\t\t}\n\t\t\t}\t\n\t\t}\n\t}\n}\n"
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"questions\",\n\t\t\"attributes\": {\n\t\t\t\"description\": \"Its question for first quiz\",\n\t\t\t\"marks\": \"10\",\n\t\t\t\"time-of-question\": \"10\",\n\t\t\t\"options\": {\"a\": \"true\", \"b\": \"false\"},\n\t\t\t\"correct-answer\": [\"a\"]\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"quiz\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"quizzes\",\n\t\t\t\t\t\"id\": 1\n\t\t\t\t}\n\t\t\t}\t\n\t\t}\n\t}\n}\n"
 						},
 						"description": ""
 					},
@@ -106,7 +106,7 @@
 				{
 					"name": "Create",
 					"request": {
-						"url": "{{protocol}}://{{server}}/api/v1/answers",
+						"url": "{{protocol}}://{{server}}/api/v1/answer-sets",
 						"method": "POST",
 						"header": [
 							{
@@ -117,7 +117,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"answers\",\n\t\t\"attributes\": {\n\t\t\t\"given-answer:\": [\"a\"]\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"quiz\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"quizzes\",\n\t\t\t\t\t\"id\": 2\n\t\t\t\t}\n\t\t\t}\t\n\t\t}\n\t}\n}"
+							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"answer-sets\",\n\t\t\"attributes\": {\n\t\t   \"candidate-name\": \"candidate_one\"\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"quiz\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"quizzes\",\n\t\t\t\t\t\"id\": 1\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
 						},
 						"description": ""
 					},
@@ -126,8 +126,8 @@
 				{
 					"name": "Assign Grade",
 					"request": {
-						"url": "{{protocol}}://{{server}}/api/v1/answers",
-						"method": "POST",
+						"url": "{{protocol}}://{{server}}/api/v1/assign_grade/1",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -137,13 +137,13 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"data\": {\n\t\t\"type\": \"answers\",\n\t\t\"attributes\": {\n\t\t\t\"given-answer:\": [\"a\"]\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"quiz\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"quizzes\",\n\t\t\t\t\t\"id\": 2\n\t\t\t\t}\n\t\t\t}\t\n\t\t}\n\t}\n}"
+							"raw": ""
 						},
 						"description": ""
 					},
 					"response": [
 						{
-							"id": "f363a392-fdb1-47cf-bc2b-cddca051cdf8",
+							"id": "dbd60cfe-9912-43ae-b3f4-f46509a5aa25",
 							"name": "assigb Grade",
 							"originalRequest": {
 								"url": "http://localhost:3000/api/v1/assign_grade/1",
@@ -158,7 +158,8 @@
 								"body": {
 									"mode": "raw",
 									"raw": ""
-								}
+								},
+								"description": ""
 							},
 							"status": "OK",
 							"code": 200,
